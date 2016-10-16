@@ -24,7 +24,7 @@ df <- read.csv.sql(file1, sep = ";",
                    sql = "select * from file where (Date = '1/2/2007' or  Date = '2/2/2007')")
 
 # adding a new Date-Time column of class POSIXlt
-df$DateTime <- strptime(paste(df[,1], df[,2]), format="%d/%m/%Y %H:%M:%S")
+df$datetime <- strptime(paste(df[,1], df[,2]), format="%d/%m/%Y %H:%M:%S")
 
 # creating a png file with graph
 png(file="plot2.png")
@@ -32,10 +32,9 @@ png(file="plot2.png")
 par(bg="transparent") #adding transparent background
 
 #plotting
-plot(df$DateTime, df$Global_active_power,
+plot(df$datetime, df$Global_active_power,
      ann=FALSE, 
      type="l")
 title(ylab="Global Active Power (kilowatts)")
 
 dev.off() #not forgetting to close device :)
-

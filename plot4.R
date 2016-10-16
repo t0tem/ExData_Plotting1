@@ -1,5 +1,5 @@
 ## this script follows Programming assignment of Week 1 of 'Exploratory data analysis' from JHU on Coursera
-## and creates Plot 3
+## and creates Plot 4
 
 # function to download and unzip the data file to R working directory
 get_file <- function () {
@@ -26,20 +26,37 @@ df <- read.csv.sql(file1, sep = ";",
 # adding a new Date-Time column of class POSIXlt
 df$datetime <- strptime(paste(df[,1], df[,2]), format="%d/%m/%Y %H:%M:%S")
 
+#################################################################################
+
 # creating a png file with graph
-png(file="plot3.png")
+png(file="plot4.png")
 par(bg="transparent") #adding transparent background
 
-#plotting
+#setting parameter for 4 plots on 1 picture
+par(mfcol=c(2,2))
+
+#drawing sub-plot 1
+plot(df$datetime, df$Global_active_power,
+     ann=FALSE, 
+     type="l")
+title(ylab="Global Active Power (kilowatts)")
+
+#drawing sub-plot 2
 with(df, plot(datetime, Sub_metering_1,
               ann=FALSE,
               type="l",
               col = "black"))
 with(df, lines(datetime, Sub_metering_2, col = "red"))
 with(df, lines(datetime, Sub_metering_3, col = "blue"))
-legend("topright", lty = 1,
+legend("topright", lty = 1, bty="n",
        col = c("black", "red", "blue"), 
        legend = c("Sub_metering_1", "Sub_metering_2", "Sub_metering_3"))
 title(ylab="Energy sub metering")
+
+#drawing sub-plot 3
+with(df, plot(datetime, Voltage, type="l"))
+
+#drawing sub-plot 4
+with(df, plot(datetime, Global_reactive_power, type="l"))
 
 dev.off() #not forgetting to close device :)
