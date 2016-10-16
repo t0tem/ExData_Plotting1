@@ -39,7 +39,7 @@ par(mfcol=c(2,2))
 plot(df$datetime, df$Global_active_power,
      ann=FALSE, 
      type="l")
-title(ylab="Global Active Power (kilowatts)")
+title(ylab="Global Active Power")
 
 #drawing sub-plot 2
 with(df, plot(datetime, Sub_metering_1,
