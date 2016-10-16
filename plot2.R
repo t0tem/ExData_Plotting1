@@ -1,5 +1,5 @@
 ## this script follows Programming assignment of Week 1 of 'Exploratory data analysis' from JHU on Coursera
-## and creates Plot 1
+## and creates Plot 2
 
 # function to download and unzip the data file to R working directory
 get_file <- function () {
@@ -23,15 +23,19 @@ library(sqldf)
 df <- read.csv.sql(file1, sep = ";", 
                    sql = "select * from file where (Date = '1/2/2007' or  Date = '2/2/2007')")
 
+# adding a new Date-Time column of class POSIXlt
+df$DateTime <- strptime(paste(df[,1], df[,2]), format="%d/%m/%Y %H:%M:%S")
+
 # creating a png file with graph
-png(file="plot1.png")
+png(file="plot2.png")
 
 par(bg="transparent") #adding transparent background
 
-hist(df[,3] , 
-     main = "Global Active Power", 
-     xlab="Global Active Power (kilowatts)", 
-     ylab="Frequency",
-     col="red")
+#plotting
+plot(df$DateTime, df$Global_active_power,
+     ann=FALSE, 
+     type="l")
+title(ylab="Global Active Power (kilowatts)")
 
 dev.off() #not forgetting to close device :)
+
