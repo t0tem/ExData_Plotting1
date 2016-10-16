@@ -24,7 +24,7 @@ df <- read.csv.sql(file1, sep = ";",
                    sql = "select * from file where (Date = '1/2/2007' or  Date = '2/2/2007')")
 
 # creating a png file with graph
-png(file="plot1.png")
+png(file="plot1.png", width = 480, height = 480)
 
 par(bg="transparent") #adding transparent background
 

@@ -29,7 +29,7 @@ df$datetime <- strptime(paste(df[,1], df[,2]), format="%d/%m/%Y %H:%M:%S")
 #################################################################################
 
 # creating a png file with graph
-png(file="plot4.png")
+png(file="plot4.png", width = 480, height = 480)
 par(bg="transparent") #adding transparent background
 
 #setting parameter for 4 plots on 1 picture

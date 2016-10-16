@@ -27,7 +27,7 @@ df <- read.csv.sql(file1, sep = ";",
 df$datetime <- strptime(paste(df[,1], df[,2]), format="%d/%m/%Y %H:%M:%S")
 
 # creating a png file with graph
-png(file="plot3.png")
+png(file="plot3.png", width = 480, height = 480)
 par(bg="transparent") #adding transparent background
 
 #plotting
